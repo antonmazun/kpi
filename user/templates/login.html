@@ -1,0 +1,83 @@
+{% extends 'index.html' %}
+{% block user_content %}
+
+<style>
+.form-block
+{
+    display : flex;
+    align-items: center;
+    justify-content: center;
+
+    height : 100vh;
+    flex-wrap: wrap;
+    flex-direction : column;
+
+}
+
+
+.form-block form
+{
+    align-content: center;
+       padding: 50px 150px;
+    background : #f6f6f7;
+}
+.form-block h4
+{
+    margin : 0;
+    background : blue;
+    color: white;
+    padding: 12px 132px;
+
+}
+.form-group
+{
+     display : flex;
+      margin-top: 5px;
+}
+.form-group label
+{
+    width: 20%;
+    text-align : right;
+}
+.form-group input
+{
+     width: 70%;
+     margin-left: 15px;
+     border-radius: 2px;
+     border: 1px solid #e3e3ec;
+}
+
+.btn-login
+{
+   border: none;
+    margin-left: 48%;
+    margin-top: 5px;
+    padding: 5px 70px;
+    border-radius: 3px;
+
+}
+.form-block a
+{
+    text-decoration: none;
+    color: blue;
+}
+
+
+</style>
+ <div class="form-block">
+ <h4>Державний реєстр майнових прав на нерухоме майно</h4>
+<form action="{% url 'login' %}" method="post">{% csrf_token %}
+
+    {% for field in login_form %}
+    <div class="form-group">
+        <label for="">
+            {{field.label}}
+        </label>
+        {{field}}
+    </div>
+    {% endfor %}
+    <button class = 'btn-login'>Вхід</button>
+    <p>Ще не зареєстровані? Тоді Вам сюди  <a href="{% url 'register'%}">Реєстрація</a></p>
+</form>
+</div>
+{% endblock %}

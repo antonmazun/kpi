@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content_user %}
+<style>
+    .form-flex
+    {
+        display: flex;
+        flex-wrap: wrap;
+    }
+</style>
+<form action="">
+     <div class="content-user">
+        <label for="">Ваш Email</label>
+        <input type="text" value="{{user.email}}" disabled>
+    </div>
+
+</form>
+
+        <form action="{% url 'update-email' id=user.id%}" class = 'form-flex' method="post">{% csrf_token %}
+            <label for="">Якщо хочете змінити Email</label>
+            <input type="text" name="new_email" required>
+            <button>Змінити</button>
+        </form>
+	
+{% endblock %}

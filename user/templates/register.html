@@ -1,0 +1,228 @@
+{% extends 'index.html' %}
+{% block user_content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<style>
+.form-block
+{
+    display : flex;
+    align-items: center;
+    justify-content: center;
+
+    height : 100vh;
+    flex-wrap: wrap;
+    flex-direction : column;
+
+}
+
+
+.form-block form
+{
+    align-content: center;
+       padding: 50px 155px;
+    background : #f6f6f7;
+}
+.form-block h4
+{
+    margin : 0;
+    background : blue;
+    color: white;
+    padding: 12px 132px;
+
+}
+.form-group
+{
+     display : flex;
+      margin-top: 5px;
+}
+.form-group label
+{
+    width: 65%;
+    text-align : right;
+}
+.form-group input
+{
+     width: 70%;
+     margin-left: 15px;
+     border-radius: 2px;
+     border: 1px solid #e3e3ec;
+}
+
+.btn-login
+{
+   border: none;
+    margin-left: 53%;
+    margin-top: 5px;
+    padding: 5px 45px;
+    border-radius: 3px;
+
+}
+	
+	.error
+	{
+		color: red;
+		padding: 10px;
+		border: 1px solid red;
+		background: #e2d6df;
+	}
+	
+	.password_error
+	{
+		display: none;
+	}
+
+.radio-btn
+{
+   background : #f6f6f7;
+}
+
+</style>
+<div class="form-block">
+ <h4>Державний реєстр майнових прав на нерухоме майно</h4>
+    <div class="radio-btn">
+        <input type="radio" name="type_person" value="psysical_person" id="psysical_person" checked>Фізична особа
+        <input type="radio" name="type_person" value="legal_person" id="legal_person">Юридична особа
+    </div>
+<form action="{% url 'register' %}" method="post" id='psysical_form'>{% csrf_token %}
+   <input type="hidden" name='type_user' value = 'psysical_user'>
+    {% for field in register_form_psysical %}
+        {% if field.label == 'Id card' %}
+            <div class="form-group" id="id_card">
+            <label for="">
+                {{field.label}}
+            </label>
+
+            {{field}}
+        </div>
+        {% else %}
+            <div class="form-group">
+            <label for="">
+                {{field.label}}
+            </label>
+            {{field}}
+        </div>
+        {% endif %}
+    {% endfor %}
+    <div id="passport_value">
+        <div class="form-group" >
+            <label for="">Номер паспорта</label>
+            <input type="text" name="passport_number">
+        </div>
+        <div class="form-group">
+            <label for="">Серія паспорта</label>
+            <input type="text" name="passport_serial">
+        </div>
+        <div class="form-group">
+            <label for="">Дата видачі паспорта</label>
+            <input type="text" name="passport_date">
+        </div>
+        <div class="form-group">
+            <label for="">Ким виданий</label>
+            <input type="text" name="passport_publisher">
+        </div>
+	</div>
+    <div id="card">
+        <div class="form-group">
+            <label for="">Id card</label>
+            <input type="text" name="card">
+        </div>
+    </div>
+
+{% if error_registration %}
+    <div class="form-group">
+		<span class = 'error'>{{error_registration}}</span>
+	</div>
+{% endif %}
+	<div class="form-group password_error" id='error'>
+		<span class = 'error'>Паролі не співпадають!</span>
+	</div>
+    <input type="radio" name="type_register" value="passport" id="id_password_radio" checked>Паспорт
+    <input type="radio" name="type_register" id ="id_card_radio">id cart
+    <button class = 'btn-login'>Реєстрація</button>
+ </form>
+
+
+    <form action="{% url 'register' %}" method="post" id="legal_form">{% csrf_token %}
+        <input type="hidden" name='type_user' value = 'legal_user'>
+         {% for field in register_form_legal %}
+
+            <div class="form-group">
+            <label for="">
+                {{field.label}}
+            </label>
+
+            {{field}}
+        </div>
+
+    {% endfor %}
+    <div class="form-group password_error">
+		<span class = 'error'>Паролі не співпадають!</span>
+	</div>
+     <button class = 'btn-login'>Реєстрація</button>
+    </form>
+ </div>
+
+
+<script>
+$(document).ready(function(){
+    var type_radio = document.getElementsByName('type_register');
+    $('#card').hide();
+    $('#legal_form').hide();
+
+    $('#id_password_radio, #id_card_radio').change(function(){
+        if($('#id_password_radio').is(':checked')){
+          $('#card').hide();
+           $('#passport_value').show();
+        }
+        else if($('#id_card_radio').is(':checked')){
+            $('#card').show();
+            $('#passport_value').hide();
+        }
+        else{
+          alert('Error!');
+        }
+    });
+	$('#psysical_person, #legal_person').change(function(){
+	if($('#psysical_person').is(':checked')){
+	  $('#legal_form').hide();
+	   $('#psysical_form').show();
+	}
+	else if($('#legal_person').is(':checked')){
+		$('#legal_form').show();
+		$('#psysical_form').hide();
+	}
+	else{
+	  alert('Error!');
+	}
+});
+
+    function check_password(){
+        var password_one  = $("id_password").val();
+		alert(password_one);
+    }
+	
+	$('#id_password2').change(function(){
+		var password_one  = $("#id_password").val();
+		var password_two  = $("#id_password2").val();
+		
+		if(password_one != password_two){
+			   $('#error').removeClass('password_error');
+		}
+		else{
+			 $('#error').addClass('password_error');
+		}
+	});
+		
+	$('#id_password_legal2').change(function(){
+		var password_one  = $("#id_password_legal").val();
+		var password_two  = $("#id_password_legal2").val();
+		
+		if(password_one != password_two){
+			   $('.password_error').show();
+		}
+		else{
+			$('.password_error').hide();
+		}
+	});
+})
+</script>
+{% endblock %}

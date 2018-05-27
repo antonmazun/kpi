@@ -1,0 +1,49 @@
+{% extends 'main.html' %}
+
+{% block content_user %}
+<style>
+
+
+</style>
+<form action="" class = 'user_form'>
+    <div class="content-user">
+        <label for="">Ваш логін</label>
+        <input type="text" value="{{user.login}}" disabled>
+    </div>
+     <div class="content-user">
+        <label for="">Імя</label>
+        <input type="text" value="{{user.first_name}}" disabled>
+    </div>
+     <div class="content-user">
+        <label for="">Прізвище</label>
+        <input type="text" value="{{user.second_name}}" disabled>
+    </div>
+    <div class="content-user">
+        <label for="">По-батькові</label>
+        <input type="text" value="{{user.middle_name}}" disabled>
+    </div>
+  
+    {% if passport_fields %}
+    <div class="content-user">
+        <label for="">Номер паспорта</label>
+        <input type="text" value="{{user.passport_number}}">
+    </div>
+    <div class="content-user">
+        <label for="">Серія паспорта</label>
+        <input type="text" value="{{user.passport_serial}}">
+    </div>
+    {% endif %}
+    {% if user.id_card != '' %}
+    <div class="content-user">
+        <label for="">id_card</label>
+        <input type="text" value="{{user.id_card}}">
+    </div>
+    {% endif %}
+    <div class="content-user">
+        <label for="">ipn</label>
+        <input type="text" value="{{user.ipn}}">
+    </div>
+</form>
+
+{% endblock %}
+

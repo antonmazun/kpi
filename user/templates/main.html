@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+	
+	.content
+	{
+		display: flex;
+		justify-content: space-between;
+		flex-wrap: wrap;
+		margin: 0 auto;
+		
+	}
+	.content .main-cabinet
+		{
+			width: 20%;
+		}
+		
+
+	.content .content-cabinet
+		{
+			width: 80%;
+		}
+		.main-cabinet a{
+			display: block;
+			padding: 15px 30px;
+			border: 1px solid #e1e1f1;
+			margin-bottom: 1px;
+			text-decoration: none;
+		}
+		a:hover{
+			color: white ;
+			border: 1px solid white;
+			background: #565656;
+		}
+		.content-user
+	{
+		display: flex;
+		justify-content:space-around;
+		flex-wrap: wrap;
+		margin-bottom: 10px;
+
+	}
+	.content-user label
+	{
+		width: 10%;
+		text-align: right;
+	}
+	.content-user input
+	{
+		width: 83%;
+		text-align: left;
+		height: 25px;
+		border: 1px solid #a2a2a2;
+		border-radius: 5px;
+	}
+	.user_form
+	{
+		padding: 15px;
+	}
+		
+	</style>
+</head>
+<body>
+<h1>Ви зайшли в систему як {{type_user}}</h1>
+
+<div class="content">
+	<div class="main-cabinet">
+		
+			<a href="{% url 'personal-info' id=user.id %}" id='personal_info'>Особиста інформація</a>
+			<a href="{% url 'contact-data' id=user.id %}">Контактні дані</a>
+			<a href="">Зміна паролю</a>
+		
+	</div>
+    <div class="content-cabinet">
+        {% block content_user %}{% endblock %}
+    </div>
+</div>
+
+
+<script>
+//	
+//	$(document).ready(function(){
+//	var loc = window.location.pathname;
+//		$('#personal_info').click(function(){
+//			console.log($(this));
+//			$(this).toggleClass('active');
+//		})
+//	$('#main-cabinet').find('a').each(function() {
+//	$(this).click.toggleClass('active', $(this).attr('href') == loc);
+//  });
+//	})
+	</script>
+
+
+</body>
+</html>

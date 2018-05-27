@@ -1,0 +1,36 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+.navbar
+    {
+        display: flex;
+        justify-content: center;
+    }
+   .navbar a
+   {
+        margin:10px;
+   }
+
+
+    </style>
+</head>
+<body>
+<!--<nav class="navbar">-->
+    <!--<a href="{% url 'login' %}">login</a>-->
+    <!--<a href="{% url 'register' %}">register</a>-->
+    <!--<a href="">шото</a>-->
+    <!--<a href="">шото</a>-->
+    <!--<a href="">шото</a>-->
+<!--</nav>-->
+
+{% block user_content %}{% endblock %}
+
+<!--<h1>LKJHG</h1>-->
+
+</body>
+</html>
