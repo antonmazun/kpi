@@ -34,7 +34,7 @@
 		a:hover{
 			color: white ;
 			border: 1px solid white;
-			background: #565656;
+			background: #b1a9bf;
 		}
 		.content-user
 	{
@@ -65,21 +65,27 @@
 	</style>
 </head>
 <body>
-<h1>Ви зайшли в систему як {{type_user}}</h1>
-
 <div class="content">
 	<div class="main-cabinet">
-		
+
 			<a href="{% url 'personal-info' id=user.id %}" id='personal_info'>Особиста інформація</a>
 			<a href="{% url 'contact-data' id=user.id %}">Контактні дані</a>
-			<a href="">Зміна паролю</a>
-		
+			<a href="{% url 'menu' id=user.id %}">Меню</a>
+			<a href="{% url 'change-password' id=user.id %}">Зміна паролю</a>
+
 	</div>
     <div class="content-cabinet">
-        {% block content_user %}{% endblock %}
+{% block content_user %} {% endblock %}
     </div>
 </div>
 
+
+
+
+{% block forms %}
+
+
+{% endblock%}
 
 <script>
 //	
