@@ -1,8 +1,12 @@
 {% extends 'main.html' %}
 
 
-{% block forms %}
-
-asdasdas
-
+{% block content_user %}
+<div>
+<a href="{% url 'statement_state_registration' id=user.id %}">Заява про державну реєстрацію прав та їх обтяжень</a>
+</div>
+<div>
+<a href="{% url 'application_for_cancelation' id=user.id %}">Заява про скасування</a>
+    </div>
+{% block form %} {% endblock %}
 {% endblock%}

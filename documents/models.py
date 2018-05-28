@@ -53,7 +53,7 @@ class ApplicationForCancelation(models.Model):
     record_number_nonowner_real_estate = models.IntegerField(verbose_name='Номер запису про взяття на облік  безхазяйного нерухомого майна')
     grounds_for_cancelation = models.CharField(max_length=255, verbose_name='Підстава для скасування')
     user = models.ForeignKey(PhysicalUser, verbose_name='Юзер', on_delete=models.CASCADE)
-    registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE)
+    #registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE)
     date = models.DateField(verbose_name='Дата',auto_now=False, auto_now_add=False)
 
 
