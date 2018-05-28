@@ -1,5 +1,7 @@
 from django.db import models
-from user.models import Address
+from user.models import Address , PhysicalUser
+
+
 # Create your models here.
 TYPE_CHOICES = (
     ('vun' , 'Виникнення'),
@@ -36,6 +38,6 @@ class StatementStateRegistration(models.Model):
     object_type = models.CharField(max_length=100 , verbose_name='Тип обьекта', choices=OBJECT_TYPE_CHOICES)
     register_number  = models.IntegerField(verbose_name='Реєстраційний номер')
     address = models.ForeignKey(Address , verbose_name="Адрес" , on_delete=models.CASCADE)
-
+    user = models.ForeignKey(PhysicalUser , on_delete=models.CASCADE , default=None)
 
 

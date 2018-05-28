@@ -31,7 +31,7 @@ class LoginForm(ModelForm):
         fields  = ['login' , 'password']
 
 
-class Address(ModelForm):
+class AddressForm(ModelForm):
     class Meta:
         model = Address
         fields = '__all__'

@@ -14,7 +14,7 @@ class Address(models.Model):
     kv = models.IntegerField(verbose_name='kv')
 
     def __str__(self):
-        return "%s, %s. %s, %s, %s, %s" % (self.country, self.region, self.city, self.street, self.numberbild, self.kv)
+        return 'Країна {} Місто {} Вулиця {} Номер будинку {}'.format(self.country , self.city , self.street , self.bilding_type)
 
 
 
