@@ -26,6 +26,7 @@ class PhysicalUser(models.Model):
     first_name = models.CharField(max_length=255 , verbose_name='Ім’я')
     second_name = models.CharField(max_length=255 , verbose_name='Прізвище')
     middle_name = models.CharField(max_length=255 , verbose_name='По батькові')
+    phone_number  = models.CharField(max_length=255 , verbose_name='Телефонний номер' , default='')
     email = models.CharField(max_length=255 , verbose_name='E-mail')
     passport_number = models.IntegerField(verbose_name='Номер паспорта', blank=True , null=True)
     passport_serial= models.CharField(max_length=2 , verbose_name='Серія паспорта', blank=True , null=True)

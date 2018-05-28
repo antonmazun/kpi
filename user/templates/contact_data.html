@@ -8,18 +8,14 @@
         flex-wrap: wrap;
     }
 </style>
-<form action="">
-     <div class="content-user">
+<form action="{% url 'update-contact' id=user.id%} " method="post">{% csrf_token %}
+
         <label for="">Ваш Email</label>
-        <input type="text" value="{{user.email}}" disabled>
-    </div>
+        <input type="text" value="{{user.email}}" name="new_email">
+         <label for="">Номер телефона</label>
+         <input type="text" name="phone_number" value="{{user.phone_number}}" >
+         <button>Змінити</button>
+
 
 </form>
-
-        <form action="{% url 'update-email' id=user.id%}" class = 'form-flex' method="post">{% csrf_token %}
-            <label for="">Якщо хочете змінити Email</label>
-            <input type="text" name="new_email" required>
-            <button>Змінити</button>
-        </form>
-	
 {% endblock %}

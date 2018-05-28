@@ -1,0 +1,25 @@
+{% extends 'main.html' %}
+
+{% block content_user %}
+<style>
+    .menu
+    {
+        width: 50%;
+        margin: 0 auto;
+    }
+    .menu a
+    {
+        display: block;
+        padding: 15px 30px;
+        border: 1px solid #1e1792;
+         margin: 1px;
+        text-decoration: none;
+    }
+</style>
+    <div class="menu">
+        <a href="{% url 'get-info-dovidky' id=user.id %}">Отримати інформаційну довідку</a>
+        <a href="">Перевірити документ</a>
+        <a href="">Інформація про стан розгляду заяви</a>
+        <a href="/documents/{{user.id}}">Подача заяви про державну реєстрацію прав</a>
+    </div>
+{% endblock %}
