@@ -3,6 +3,6 @@
 
 {% block content_user %}
 
-<a href="{% url 'statement_state_registration' id_one=user.id %}">Заява про державну реєстрацію прав та їх обтяжень</a>
+<a href="{% url 'statement_state_registration' id=user.id %}">Заява про державну реєстрацію прав та їх обтяжень</a>
 {% block form %} {% endblock %}
 {% endblock%}

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import PhysicalUser , LegalPerson
+from .models import PhysicalUser , LegalPerson , Address
 from django import forms
 
 
@@ -29,3 +29,9 @@ class LoginForm(ModelForm):
     class Meta:
         model = PhysicalUser
         fields  = ['login' , 'password']
+
+
+class Address(ModelForm):
+    class Meta:
+        model = Address
+        fields = '__all__'

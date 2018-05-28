@@ -6,6 +6,8 @@ from django.http import  HttpResponse
 
 
 
+
+
 def test(request):
     login_form  = LoginForm()
     ctx = {}
@@ -173,6 +175,29 @@ def menu(request , id):
     ctx  = {}
     ctx['user'] = u
     return render(request , 'menu.html' , ctx)
+
+
+def change_password(request, id):
+    user = PhysicalUser.objects.get(id=id)
+    if request.method == 'GET':
+        ctx = {}
+        ctx['user'] = user
+        return render(request,'change_password.html',ctx)
+    if request.method == 'POST':
+        user = PhysicalUser.objects.get(id=id)
+        old_password = request.POST.get('old_password')
+        if user.password == old_password:
+            if request.POST.get('new_password') == request.POST.get('new_password_2'):
+                user.password = request.POST.get('new_password')
+                user.save()
+                #user.password2 = request.POST.get('new_password_2')
+                return redirect('/change-password/' + str(id))
+            else :
+                return HttpResponse('Паролі не співпадають')
+        else :
+            return HttpResponse('error!')
+
+
 
 
 def get_info_dovidky(request , id):
