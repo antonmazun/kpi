@@ -1,5 +1,5 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content_user %}
 <style>
 label{
@@ -31,6 +31,8 @@ width: 10%;
        margin-left: 500px;
 }
 </style>
+<script src = "{% static 'js/change_add_adress.js'%}"></script>
+<link rel="stylesheet" href="{% static 'css/popup.css'%}">
 <form action="" class = 'user_form'>
     <div class="content-user">
         <label for="">Ваш логін</label>
@@ -69,8 +71,45 @@ width: 10%;
         <label for="">ipn</label>
         <input type="text" value="{{user.ipn}}" disabled>
     </div>
+    {% if adress_user %}
+    <div class="content-user">
+        <label for="">Країна</label>
+        <input type="text" value="{{adress_user.country}}" disabled>
+    </div>
+     <div class="content-user">
+        <label for="">Регіон</label>
+        <input type="text" value="{{adress_user.region}}" disabled>
+    </div>
+    <div class="content-user">
+        <label for="">Місто</label>
+        <input type="text" value="{{adress_user.city}}" disabled>
+    </div>
+    <div class="content-user">
+        <label for="">Вулиця</label>
+        <input type="text" value="{{adress_user.street}}" disabled>
+    </div>
+     <div class="content-user">
+        <label for="">Тип обьекта</label>
+        <input type="text" value="{{adress_user.bilding_type}}" disabled>
+    </div>
+    <div class="content-user">
+        <label for="">Номер будинку</label>
+        <input type="text" value="{{adress_user.numberbild}}" disabled>
+    </div>
+     <div class="content-user">
+        <label for="">Номер квартири/земельної ділянки</label>
+        <input type="text" value="{{adress_user.numberbild}}" disabled>
+    </div>
+    {% endif %}
+
 </form>
+<<<<<<< HEAD
 <div class="form-adress user_form">
+=======
+<button id="change_add_adress">Додати/змінити адресу</button>
+<div class="form-adress" id="adress">
+    <button id = 'close_pop_up'>X</button>
+>>>>>>> 701018fdd6a06fad687cc93224661be5992588e3
     <p>Додати адресу</p>
     <form action="{% url 'personal-info' id=user.id%}" method="post">{% csrf_token %}
         {% for field in form_adress %}
@@ -82,6 +121,7 @@ width: 10%;
         <button type="submit" name="commit" class="but">Додати адресу</button>
     </form>
 </div>
+
 
 {% endblock %}
 
