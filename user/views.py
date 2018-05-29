@@ -146,16 +146,18 @@ def register(request):
 
 
 def personal_info(request , id):
+    user = PhysicalUser.objects.get(id=id)
     if request.method == "GET":
-
-        user = PhysicalUser.objects.get(id=id)
         form_adress = AddressForm()
         ctx  = {}
         ctx['user'] = user
         ctx['form_adress'] = form_adress
         if user.passport_number:
             ctx['passport_fields'] = True
-        # print(user.passport_number)
+        if user.adress:
+            print(user.adress.id)
+            adress_user = Address.objects.get(id=user.adress.id)
+            ctx['adress_user'] = adress_user
         return render(request , 'personal_info.html', ctx)
     elif request.method == "POST":
         form_adress = AddressForm(request.POST)
@@ -170,7 +172,11 @@ def personal_info(request , id):
                 numberbild = form_data['numberbild'],
                 kv = form_data['kv']
             )
-            return HttpResponse('asdasd')
+            adress_for_user  = Address.objects.latest('id')
+            print('adress_for_user' , adress_for_user.id)
+            user.adress = adress_for_user
+            user.save()
+            return redirect('/personal-info/' + str(id))
 
 
 
