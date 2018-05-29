@@ -21,6 +21,14 @@
      border-radius: 2px;
      border: 1px solid #e3e3ec;
 }
+	.show
+	{
+		display: block !important;
+	}
+	.hide
+	{
+		display: none;
+	}
 </style>
 <form action="." method="post">{% csrf_token %}
     <input type="hidden" value="{{user.id}}" name="user_id">
@@ -37,7 +45,7 @@
     <a href="#" id ='add_adress'>Добавить адрес</a>
     </form>
 
-<div id="form-adress">
+<div id="form-adress" class = 'hide'>
     <form action="{% url 'add-address' %}" method="post">{% csrf_token %}
         {% for field in adress_form %}
         <div class="form-group">
@@ -52,10 +60,19 @@
 
 <script>
 $(document).ready(function(){
-	$('#form-adress').hide();
-	$('#add_adress').click(function(e){
+	
+	var btn  = document.getElementById('add_adress');
+	btn.addEventListener('click' , function(e){
 		e.preventDefault();
-		$('#form-adress').show();
+		console.log(btn.innerHTML);
+		if (btn.innerHTML == 'Добавить адрес'){
+			btn.innerHTML = 'Спрятать'
+		}
+		else if(btn.innerHTML == "Спрятать"){
+			btn.innerHTML = 'Добавить адрес';
+		}
+		
+		$('#form-adress').toggleClass('show');
 	})
 	
 })

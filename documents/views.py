@@ -87,18 +87,6 @@ def add_application_for_cancelation(request, id):
             print(form_data)
         return redirect('/documents/application_for_cancelation/' + str(id))
 
-   #
-   # type_registration = models.CharField(max_length=200 , choices=TYPE_CHOICES , verbose_name='Вид реєстрації')
-   #  property_list_number  = models.IntegerField(verbose_name='Номер запису про право власності')
-   #  ownership  = models.CharField(max_length=100 , verbose_name='Форма власності' , choices=OWNER_SHIP_CHOICES)
-   #  common_property_type = models.CharField(max_length=100 , verbose_name='Форма власності' , choices=COMMON_PROPERTY_CHOICES)
-   #  object_type = models.CharField(max_length=100 , verbose_name='Тип обьекта', choices=OBJECT_TYPE_CHOICES)
-   #  register_number  = models.IntegerField(verbose_name='Реєстраційний номер')
-   #  address = models.ForeignKey(Address , verbose_name="Адрес" , on_delete=models.CASCADE)
-   #  user = models.ForeignKey(PhysicalUser , on_delete=models.CASCADE , default=None)
-
-
-
 
 def add_address(request):
     if request.method == 'POST':
