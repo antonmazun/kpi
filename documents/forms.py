@@ -6,7 +6,7 @@ from django import forms
 class StatementStateRegistrationForm(ModelForm):
     class Meta:
         model = StatementStateRegistration
-        exclude  = ['user']
+        exclude  = ['user' , ]
 
 class ApplicationForCancelationForm(ModelForm):
     class Meta:

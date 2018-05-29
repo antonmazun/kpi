@@ -46,7 +46,6 @@ def add_statement_state_registration(request):
                 user = u,
                 register_number = form_data['register_number'],
             )
-            print(form_data)
         return redirect('/documents/statement_state_registration/')
 
 def add_application_for_cancelation(request, id):

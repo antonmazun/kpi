@@ -163,11 +163,14 @@ body {
     <a class="logout" href="{% url 'logout' %}">
         <span class = "usname">{{user.first_name}} {{user.second_name}} {{user.middle_name}}</span>
         Вихід<p class="logout">⎆</p>
-</div>
+    </a>
 
     </div>
 
 <div class="content">
+    {% if user_registrator %}
+    <p>user_registrator</p>
+    {% else %}
 	<div class="main-cabinet">
 <ul>
 			<li class="one"><a href="{% url 'personal-info' id=user.id %}" id='personal_info'>Особиста інформація</a></li>
@@ -176,6 +179,7 @@ body {
 			<li class="five"><a href="{% url 'change-password' id=user.id %}">Зміна паролю</a></li>
 </ul>
 	</div>
+    {% endif %}
     <div class="content-cabinet">
 {% block content_user %} {% endblock %}
     </div>

@@ -36,15 +36,24 @@ CANCELATION_CHOICES = (
     ('registration','Cкасування державної реєстрації речових прав на нерухоме майно та їх обтяжень')
 )
 
+CHOICES_STATUS = (
+    ('on_view' , 'розгляд'),
+    ('failure' , 'відмова'),
+    ('approved' , 'схвалено'),
+    ('dont_read' , 'не прочитаний')
+)
 class StatementStateRegistration(models.Model):
     type_registration = models.CharField(max_length=200 , choices=TYPE_CHOICES , verbose_name='Вид реєстрації')
     property_list_number  = models.IntegerField(verbose_name='Номер запису про право власності')
     ownership  = models.CharField(max_length=100 , verbose_name='Форма власності' , choices=OWNER_SHIP_CHOICES)
-    common_property_type = models.CharField(max_length=100 , verbose_name='Форма власності' , choices=COMMON_PROPERTY_CHOICES)
+    common_property_type = models.CharField(max_length=100 , verbose_name='Вид спільної власності' , choices=COMMON_PROPERTY_CHOICES,blank=True , null=True)
     object_type = models.CharField(max_length=100 , verbose_name='Тип обьекта', choices=OBJECT_TYPE_CHOICES)
     register_number  = models.IntegerField(verbose_name='Реєстраційний номер')
     address = models.ForeignKey(Address , verbose_name="Адреса" , on_delete=models.CASCADE)
     user = models.ForeignKey(PhysicalUser , on_delete=models.CASCADE , default=None)
+    status  = models.CharField(max_length=255 , verbose_name='Статус' ,choices=CHOICES_STATUS , default='dont_read')
+    registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE , default=None)
+
 
 class ApplicationForCancelation(models.Model):
     type_cancelation = models.CharField(max_length=50, choices=CANCELATION_CHOICES, verbose_name='Вид скасування')
@@ -56,8 +65,9 @@ class ApplicationForCancelation(models.Model):
     record_number_nonowner_real_estate = models.IntegerField(verbose_name='Номер запису про взяття на облік  безхазяйного нерухомого майна',blank=True, null=True)
     grounds_for_cancelation = models.CharField(max_length=255, verbose_name='Підстава для скасування')
     user = models.ForeignKey(PhysicalUser, verbose_name='Юзер', on_delete=models.CASCADE)
-    #registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE)
+    registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE , default=None)
     date = models.DateField(verbose_name='Дата',auto_now=False, auto_now_add=False)
+    status  = models.CharField(max_length=255 , verbose_name='Статус' ,choices=CHOICES_STATUS , default='dont_read')
 
 
 
