@@ -1,83 +1,51 @@
 {% extends 'index.html' %}
 {% block user_content %}
+{%load static %}
 
 <style>
-.form-block
-{
-    display : flex;
-    align-items: center;
-    justify-content: center;
-
-    height : 100vh;
-    flex-wrap: wrap;
-    flex-direction : column;
-
+.p-head {
+    background-color: #f5f5f5;
+    background-image: url("{% static 'img/rrp-head-bg.png' %}");
+    background-repeat: repeat-x;
+    height: 180px
 }
-
-
-.form-block form
-{
-    align-content: center;
-       padding: 50px 150px;
-    background : #f6f6f7;
-}
-.form-block h4
-{
-    margin : 0;
-    background : blue;
-    color: white;
-    padding: 12px 132px;
-
-}
-.form-group
-{
-     display : flex;
-      margin-top: 5px;
-}
-.form-group label
-{
-    width: 20%;
-    text-align : right;
-}
-.form-group input
-{
-     width: 70%;
-     margin-left: 15px;
-     border-radius: 2px;
-     border: 1px solid #e3e3ec;
-}
-
-.btn-login
-{
-   border: none;
-    margin-left: 48%;
-    margin-top: 5px;
-    padding: 5px 70px;
-    border-radius: 3px;
-
-}
-.form-block a
-{
-    text-decoration: none;
-    color: blue;
-}
-
 
 </style>
- <div class="form-block">
- <h4>Державний реєстр майнових прав на нерухоме майно</h4>
-<form action="{% url 'login' %}" method="post">{% csrf_token %}
 
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+
+ <!--<h4>Державний реєстр майнових прав на нерухоме майно</h4>-->
+
+
+<section class="container">
+    <div class="login">
+
+          <h1>Вхід до особистого кабінету</h1>
+    <form action="{% url 'login' %}" method="post">{% csrf_token %}
     {% for field in login_form %}
-    <div class="form-group">
-        <label for="">
-            {{field.label}}
+    <div class="form-group" id="container">
+
         </label>
         {{field}}
     </div>
     {% endfor %}
-    <button class = 'btn-login'>Вхід</button>
-    <p>Ще не зареєстровані? Тоді Вам сюди  <a href="{% url 'register'%}">Реєстрація</a></p>
+
+    <button class = 'btn-login' type="submit" name="commit">Вхід</button>
+
+
 </form>
+
 </div>
+            <div class="login-help">
+      <p>Ще не зареєстровані? Тоді Вам сюди  <a href="{% url 'register'%}">Реєстрація</a></p>
+</div>
+  </section>
 {% endblock %}
+</body>
