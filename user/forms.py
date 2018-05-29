@@ -32,6 +32,13 @@ class LegalPersonForm(ModelForm):
             'password_legal': forms.PasswordInput(attrs={'placeholder': 'Пароль'}),
             'password_legal2': forms.PasswordInput(attrs={'placeholder': 'Повторний пароль'}),
             'login': forms.TextInput(attrs={'placeholder': 'Логін'}),
+            'EDRPOU': forms.TextInput(attrs={'placeholder': ' ЄДРПОУ'}),
+            'name_company': forms.TextInput(attrs={'placeholder': 'Назва компанії'}),
+            'first_name_LeadCompany': forms.TextInput(attrs={'placeholder': "Ім'я засновника компанії"}),
+            'last_name_LeadCompany': forms.TextInput(attrs={'placeholder': 'Прізвище засновника компанії'}),
+            'tax_number_person': forms.TextInput(attrs={'placeholder': 'Податковий номер'}),
+            'middle_name_LeadCompany': forms.TextInput(attrs={'placeholder': 'По батькові засновника компанії'}),
+
         }
 
 class LoginForm(ModelForm):

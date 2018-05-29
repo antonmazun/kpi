@@ -5,8 +5,19 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="{% static 'css/style.css'%}">
-
+    <link rel="stylesheet" href="{% static 'css/style_menu.css'%}">
+  <link href='https://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript">
+$(function(){
+  $("li").hover(function(){
+    $(this).animate({width:"220"},"medium");
+  },
+                function(){
+                                         $(this).animate({width:"180"},"slow");
+                });
+});
+  </script>
     <style>
 .p-head {
     background-color: #f5f5f5;
@@ -30,35 +41,38 @@ a.logout:hover{
 			background: transparent !important ;
 
 		}
-	.content
-	{
-		display: flex;
-		justify-content: space-between;
-		flex-wrap: wrap;
-		margin: 0 auto;
 
-	}
+.content{
+display: flex;
+
+margin-top: 0px;
+    margin-left: 0px;
+}
 	.content .main-cabinet
 		{
+
 			width: 20%;
 		}
 
 
 	.content .content-cabinet
 		{
-			width: 80%;
+		margin-left: 60px;
+margin-top: 20px;
+			width: 70%;
 		}
+
+
 		.main-cabinet a{
 			display: block;
-			padding: 15px 30px;
-			border: 1px solid #e1e1f1;
-			margin-bottom: 1px;
+            color: #121619;
+            font-size: 17px;
 			text-decoration: none;
 		}
 		a:hover{
 			color: white ;
-			border: 1px solid white;
-			background: #b1a9bf;
+
+
 		}
 		.content-user
 	{
@@ -108,26 +122,33 @@ a.logout:hover{
 
 		}
 
+.container_head img{
+    margin-right: auto;
+    margin-left: auto;
+    background-repeat: no-repeat;
+    left: 0 !important;
+}
 	</style>
 </head>
 <body>
 <div class="p-head">
-      <div class="container">
+      <div class="container_head">
         <img src="{% static 'img/rrp-logo-text.png' %}" alt="Державний реєстр речових прав на нерухоме майно">
       </div>
     <div class="exit">
     <a class="logout" href="/">Вихід<p class="logout">⎆</p>
-</div>
+
     </a>
     </div>
+</div>
 <div class="content">
 	<div class="main-cabinet">
-
-			<a href="{% url 'personal-info' id=user.id %}" id='personal_info'>Особиста інформація</a>
-			<a href="{% url 'contact-data' id=user.id %}">Контактні дані</a>
-			<a href="{% url 'menu' id=user.id %}">Меню</a>
-			<a href="{% url 'change-password' id=user.id %}">Зміна паролю</a>
-
+<ul>
+			<li class="one"><a href="{% url 'personal-info' id=user.id %}" id='personal_info'>Особиста інформація</a></li>
+			<li class="two"><a href="{% url 'contact-data' id=user.id %}">Контактні дані</a></li>
+			<li class="three"><a href="{% url 'menu' id=user.id %}">Меню</a></li>
+			<li class="five"><a href="{% url 'change-password' id=user.id %}">Зміна паролю</a></li>
+</ul>
 	</div>
     <div class="content-cabinet">
 {% block content_user %} {% endblock %}

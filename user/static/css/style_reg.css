@@ -72,7 +72,7 @@ padding:0;
 		color: red;
 		padding: 10px;
 		border: 1px solid red;
-		background: #e2d6df;
+		background: #fff !important;
 	}
 
 	.password_error
@@ -359,3 +359,7 @@ button[type=submit]:active {
 	float: left;
 	display: block;
 }
+
+/*btn*/
+
+

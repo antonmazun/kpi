@@ -10,7 +10,9 @@
     background-color: #f5f5f5;
     background-image: url("{% static 'img/rrp-head-bg.png' %}");
     background-repeat: repeat-x;
-    height: 180px
+    height: 180px;
+
+
 }
 .navbar
     {
@@ -26,19 +28,22 @@ margin:0;
 padding:0;
 }
 
-.container img{
+.container{
+
+}
+
+.container_head img{
     margin-right: auto;
     margin-left: auto;
     background-repeat: no-repeat;
-    justify-content: left !important;
-
+    left: 0 !important;
 }
 
     </style>
 </head>
 <body>
 <div class="p-head">
-      <div class="container">
+      <div class="container_head">
         <img src="{% static 'img/rrp-logo-text.png' %}" alt="Державний реєстр речових прав на нерухоме майно">
       </div>
     </div>
