@@ -46,6 +46,18 @@ margin-top:5px;
         <input type="text" value="{{user.ipn}}" disabled>
     </div>
 </form>
+<div class="form-adress">
+    <p>Додати адресу</p>
+    <form action="{% url 'personal-info' id=user.id%}" method="post">{% csrf_token %}
+        {% for field in form_adress %}
+        <div class="form-group">
+            <label for="">{{field.label}}</label>
+            {{field}}
+        </div>
+        {% endfor %}
+        <button>Додати адресу</button>
+    </form>
+</div>
 
 {% endblock %}
 

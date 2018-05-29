@@ -1,0 +1,15 @@
+{% extends 'get_info_dovidky.html' %}
+{% block content_search %}
+<p class="help-text">Для коректного пошуку обьекту необхідно вказувати повну адресу:</p>
+<form action="{% url 'search-for-adress' %}">
+    {% for field in form_adress %}
+    <div class="form-group">
+        <label for="">{{field.label}}</label>
+        {{field}}
+    </div>
+    {% endfor %}
+    <button type = 'reset'>Очистити</button>
+    <button type = 'submit'>Знайти</button>
+    <a href = '{% url "previous" %}'>Повернутись до пошуку</a>
+</form>
+{% endblock %}

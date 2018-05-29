@@ -2,16 +2,19 @@ from django.db import models
 
 # Create your models here.
 
-
+CHOICES_TYPE_BUILDING = (
+    ('build' , 'Будинок'),
+    ('ground_dil' , 'Земельна ділянка')
+)
 
 class Address(models.Model):
-    country = models.CharField(max_length=255,verbose_name='country')
-    region = models.CharField(max_length=255,verbose_name='region')
-    city = models.CharField(max_length=255, verbose_name='city')
-    street = models.CharField(max_length=255, verbose_name='street')
-    bilding_type = models.CharField(max_length=255,verbose_name='bilding_type')
-    numberbild = models.IntegerField(verbose_name='number_bild')
-    kv = models.IntegerField(verbose_name='kv')
+    country = models.CharField(max_length=255,verbose_name='Країна')
+    region = models.CharField(max_length=255,verbose_name='Регіон')
+    city = models.CharField(max_length=255, verbose_name='Місто')
+    street = models.CharField(max_length=255, verbose_name='Вулиця')
+    bilding_type = models.CharField(max_length=255,verbose_name='Тип будівлі', choices=CHOICES_TYPE_BUILDING)
+    numberbild = models.IntegerField(verbose_name='Номер будинку')
+    kv = models.IntegerField(verbose_name='Номер квартири/земельної ділянки')
 
     def __str__(self):
         return 'Країна {} Місто {} Вулиця {} Номер будинку {}'.format(self.country , self.city , self.street , self.bilding_type)
@@ -66,7 +69,7 @@ class LegalPerson(models.Model):
     login = models.CharField(max_length=255, verbose_name='Логін'  ,default=None)
     password_legal = models.CharField(max_length=255, verbose_name='Пароль')
     password_legal2 = models.CharField(max_length=255, verbose_name='Потвердите пароль', default=None)
-    EDRPOU = models.IntegerField(verbose_name='EDRPOU' , default=123213)
+    EDRPOU = models.IntegerField(verbose_name='EDRPOU', default=None)
     name_company = models.CharField(max_length=255, verbose_name='name company')
     adress_company = models.ForeignKey(Address, on_delete=models.CASCADE , default=None)
     first_name_LeadCompany = models.CharField(max_length=255, verbose_name='first_name')

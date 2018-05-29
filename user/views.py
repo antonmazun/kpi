@@ -1,6 +1,6 @@
 from django.shortcuts import render  ,redirect
-from .forms import PhysicalUserForm , LoginForm  , LegalPersonForm
-from .models import PhysicalUser
+from .forms import PhysicalUserForm , LoginForm  , LegalPersonForm , AddressForm
+from .models import PhysicalUser , Address
 from django.http import  HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
@@ -146,13 +146,32 @@ def register(request):
 
 
 def personal_info(request , id):
-    user = PhysicalUser.objects.get(id=id)
-    ctx  = {}
-    ctx['user'] = user
-    if user.passport_number:
-        ctx['passport_fields'] = True
-    # print(user.passport_number)
-    return render(request , 'personal_info.html', ctx)
+    if request.method == "GET":
+
+        user = PhysicalUser.objects.get(id=id)
+        form_adress = AddressForm()
+        ctx  = {}
+        ctx['user'] = user
+        ctx['form_adress'] = form_adress
+        if user.passport_number:
+            ctx['passport_fields'] = True
+        # print(user.passport_number)
+        return render(request , 'personal_info.html', ctx)
+    elif request.method == "POST":
+        form_adress = AddressForm(request.POST)
+        if form_adress.is_valid():
+            form_data = form_adress.cleaned_data
+            Address.objects.create(
+                country = form_data['country'],
+                region = form_data['region'],
+                city = form_data['city'],
+                street = form_data['street'],
+                bilding_type = form_data['bilding_type'],
+                numberbild = form_data['numberbild'],
+                kv = form_data['kv']
+            )
+            return HttpResponse('asdasd')
+
 
 
 def contact_data(request , id):
@@ -208,7 +227,34 @@ def change_password(request, id):
 
 
 def get_info_dovidky(request , id):
-    u  = PhysicalUser.objects.get(id=id)
-    ctx  = {}
+    u = PhysicalUser.objects.get(id=id)
+    ctx = {}
     ctx['user'] = u
+    if 'get_search' in request.GET:
+        get_value_search = request.GET.get('get_search')
+        if get_value_search == 'adress_choice':
+            form_adress = AddressForm()
+            ctx['form_adress'] = form_adress
+            return render(request , 'search_adress.html' , ctx)
+    # u  = PhysicalUser.objects.get(id=id)
+    # ctx  = {}
+    # ctx['user'] = u
     return render(request , 'get_info_dovidky.html' , ctx)
+
+
+def logout(request):
+    if request.session['entry_user']:
+        del request.session['entry_user']
+    return redirect('/')
+
+
+def previous(request):
+    user_id = request.session['entry_user']
+    return redirect('/get-info-dovidky/' + str(user_id))
+
+def search_for_adress(request):
+    form  = AddressForm(request.GET)
+    if form.is_valid():
+
+        print(form.cleaned_data)
+    return HttpResponse('ko')
