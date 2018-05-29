@@ -29,6 +29,27 @@
 	{
 		display: none;
 	}
+	a{
+color: #527881;
+text-decoration:none;
+}
+a:hover{
+color: #527881;
+
+}
+button{
+margin-left:20px;
+margin-top: 20px;
+}
+.bl_but{
+margin-left:100px;
+margin-bottom:20px;
+}
+.form-group label {
+
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 </style>
 <form action="." method="post">{% csrf_token %}
     <input type="hidden" value="{{user.id}}" name="user_id">
@@ -41,8 +62,10 @@
 
 </div>
 {% endfor %}
-    <button>Подати заяву</button>
-    <a href="#" id ='add_adress'>Добавить адрес</a>
+    <div class="bl_but">
+    <button type="submit" >Подати заяву</button>
+    <button type="submit" ><a href="#" id ='add_adress'>Додати адресу</a></button>
+    </div>
     </form>
 
 <div id="form-adress" class = 'hide'>
@@ -53,7 +76,9 @@
         {{field}}
         </div>
         {% endfor %}
-        <button>Добавить адрес</button>
+        <div class="bl_but">
+        <button type="submit" >Додати адресу</button>
+            </div>
     </form>
 </div>
 
@@ -65,11 +90,11 @@ $(document).ready(function(){
 	btn.addEventListener('click' , function(e){
 		e.preventDefault();
 		console.log(btn.innerHTML);
-		if (btn.innerHTML == 'Добавить адрес'){
-			btn.innerHTML = 'Спрятать'
+		if (btn.innerHTML == 'Додати адресу'){
+			btn.innerHTML = 'Заховати'
 		}
-		else if(btn.innerHTML == "Спрятать"){
-			btn.innerHTML = 'Добавить адрес';
+		else if(btn.innerHTML == "Заховати"){
+			btn.innerHTML = 'Додати адресу';
 		}
 		
 		$('#form-adress').toggleClass('show');

@@ -1,11 +1,24 @@
 {% extends 'main.html' %}
 
-
+{%load static %}
 {% block content_user %}
-<div>
-<a href="{% url 'application_for_cancelation' id=user.id %}">Заява про скасування</a>
-    </div>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-<a href="{% url 'statement_state_registration' %}">Заява про державну реєстрацію прав та їх обтяжень</a>
+	<link rel="stylesheet" href="{% static 'css/st_men.css' %}">
+
+</head>
+<nav class="menu menu--adsila">
+<a class="menu__item" href="{% url 'application_for_cancelation' id=user.id %}">
+		<span class="menu__item-name">Заява про скасування</span>
+
+	</a>
+    <a class="menu__item" href="{% url 'statement_state_registration' %}">
+		<span class="menu__item-name">Заява про державну реєстрацію прав та їх обтяжень</span>
+
+	</a>
+
+</nav>
 {% block form %} {% endblock %}
 {% endblock%}

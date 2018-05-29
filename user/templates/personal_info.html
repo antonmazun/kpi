@@ -30,6 +30,21 @@ p {
 width: 10%;
        margin-left: 500px;
 }
+
+button{
+margin-left:500px;
+margin-bottom: 20px;
+}
+.footer {
+  position: absolute;
+  left: 0;
+margin-top:15px;
+
+  width: 100%;
+  height: 40px;
+  background-color: #a2a2a2;
+}
+
 </style>
 <script src = "{% static 'js/change_add_adress.js'%}"></script>
 <link rel="stylesheet" href="{% static 'css/popup.css'%}">
@@ -104,19 +119,15 @@ width: 10%;
 
 </form>
 
-<<<<<<< HEAD
-<div class="form-adress user_form">
-=======
->>>>>>> 3661b822718ffab968951ac0798d15b685409a60
 
-<button id="change_add_adress">Додати/змінити адресу</button>
+
+
+
+<button id="change_add_adress" type = 'submit'  name="commit">Додати/змінити адресу</button>
 
 <div class="form-adress" id="adress">
     <button id = 'close_pop_up'>X</button>
-<<<<<<< HEAD
 
-=======
->>>>>>> 3661b822718ffab968951ac0798d15b685409a60
     <p>Додати адресу</p>
     <form action="{% url 'personal-info' id=user.id%}" method="post">{% csrf_token %}
         {% for field in form_adress %}
@@ -128,5 +139,6 @@ width: 10%;
         <button type="submit" name="commit" class="but">Додати адресу</button>
     </form>
 </div>
+
 
 {% endblock %}
