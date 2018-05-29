@@ -116,9 +116,11 @@ a.logout:hover{
         <img src="{% static 'img/rrp-logo-text.png' %}" alt="Державний реєстр речових прав на нерухоме майно">
       </div>
     <div class="exit">
-    <a class="logout" href="/">Вихід<p class="logout">⎆</p>
+
+    <a class="logout" href="{% url 'logout' %}">
+        <span>{{user.first_name}} {{user.second_name}} {{user.middle_name}}</span>
+        Вихід<p class="logout">⎆</p>
 </div>
-    </a>
     </div>
 <div class="content">
 	<div class="main-cabinet">

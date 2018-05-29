@@ -212,3 +212,9 @@ def get_info_dovidky(request , id):
     ctx  = {}
     ctx['user'] = u
     return render(request , 'get_info_dovidky.html' , ctx)
+
+
+def logout(request):
+    if request.session['entry_user']:
+        del request.session['entry_user']
+    return redirect('/')

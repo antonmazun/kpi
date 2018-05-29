@@ -10,4 +10,5 @@ urlpatterns = [
     path('menu/<int:id>', views.menu, name='menu'),
     path('get-info-dovidky/<int:id>', views.get_info_dovidky, name='get-info-dovidky'),
     path('change-password/<int:id>', views.change_password, name='change-password'),
+    path('logout/', views.logout, name='logout'),
 ]

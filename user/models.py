@@ -66,7 +66,7 @@ class LegalPerson(models.Model):
     login = models.CharField(max_length=255, verbose_name='Логін'  ,default=None)
     password_legal = models.CharField(max_length=255, verbose_name='Пароль')
     password_legal2 = models.CharField(max_length=255, verbose_name='Потвердите пароль', default=None)
-    EDRPOU = models.IntegerField(verbose_name='EDRPOU' , default=123213)
+    EDRPOU = models.IntegerField(verbose_name='EDRPOU', default=None)
     name_company = models.CharField(max_length=255, verbose_name='name company')
     adress_company = models.ForeignKey(Address, on_delete=models.CASCADE , default=None)
     first_name_LeadCompany = models.CharField(max_length=255, verbose_name='first_name')
