@@ -104,19 +104,12 @@ width: 10%;
 
 </form>
 
-<<<<<<< HEAD
-<div class="form-adress user_form">
-=======
->>>>>>> 3661b822718ffab968951ac0798d15b685409a60
 
 <button id="change_add_adress">Додати/змінити адресу</button>
 
 <div class="form-adress" id="adress">
     <button id = 'close_pop_up'>X</button>
-<<<<<<< HEAD
 
-=======
->>>>>>> 3661b822718ffab968951ac0798d15b685409a60
     <p>Додати адресу</p>
     <form action="{% url 'personal-info' id=user.id%}" method="post">{% csrf_token %}
         {% for field in form_adress %}

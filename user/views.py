@@ -1,6 +1,6 @@
 from django.shortcuts import render  ,redirect
 from .forms import PhysicalUserForm , LoginForm  , LegalPersonForm , AddressForm
-from .models import PhysicalUser , Address
+from .models import PhysicalUser , Address, Registor
 from django.http import  HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
@@ -23,6 +23,12 @@ def login(request):
             form = form.cleaned_data
             login = form['login']
             password = form['password']
+            if login =='registrator':
+                ctx = {}
+                registrator = Registor.objects.get(login=login, password=password)
+                request.session['id_registor'] = registrator.id
+                ctx['user_registrator'] = True
+                return  render(request , 'registrator.html' , ctx)
             try:
                 user =  PhysicalUser.objects.get(login=login ,password=password)
                 request.session['entry_user'] = user.id
@@ -164,11 +170,11 @@ def personal_info(request , id):
         if form_adress.is_valid():
             form_data = form_adress.cleaned_data
             Address.objects.create(
-                country = form_data['country'],
-                region = form_data['region'],
-                city = form_data['city'],
-                street = form_data['street'],
-                bilding_type = form_data['bilding_type'],
+                country = form_data['country'].lower(),
+                region = form_data['region'].lower(),
+                city = form_data['city'].lower(),
+                street = form_data['street'].lower(),
+                bilding_type = form_data['bilding_type'].lower(),
                 numberbild = form_data['numberbild'],
                 kv = form_data['kv']
             )
@@ -242,9 +248,6 @@ def get_info_dovidky(request , id):
             form_adress = AddressForm()
             ctx['form_adress'] = form_adress
             return render(request , 'search_adress.html' , ctx)
-    # u  = PhysicalUser.objects.get(id=id)
-    # ctx  = {}
-    # ctx['user'] = u
     return render(request , 'get_info_dovidky.html' , ctx)
 
 
@@ -261,6 +264,40 @@ def previous(request):
 def search_for_adress(request):
     form  = AddressForm(request.GET)
     if form.is_valid():
-
-        print(form.cleaned_data)
-    return HttpResponse('ko')
+        form_data  = form.cleaned_data
+        country = form_data['country']
+        region = form_data['region']
+        city = form_data['city']
+        street = form_data['street']
+        bilding_type = form_data['bilding_type']
+        numberbild = form_data['numberbild']
+        kv = form_data['kv']
+        try:
+            result_search = Address.objects.get(
+                country=country,
+                region=region,
+                city=city,
+                street=street,
+                bilding_type=bilding_type,
+                numberbild=numberbild,
+                kv=kv
+            )
+            user_search = PhysicalUser.objects.get(adress=result_search.id)
+            ctx = {}
+            ctx['result_search'] = result_search
+            ctx['user_search'] = user_search
+            ctx['user'] = PhysicalUser.objects.get(id=request.session['entry_user'])
+            print(request.session['entry_user'])
+            return render(request, 's_result_adress.html', ctx)
+        except ObjectDoesNotExist as e:
+            ctx = {}
+            ctx['user'] = PhysicalUser.objects.get(id=request.session['entry_user'])
+            ctx['null_result_search'] = True
+            ctx['country'] = country
+            ctx['region'] = region
+            ctx['city'] = city
+            ctx['street'] = street
+            ctx['bilding_type'] = bilding_type
+            ctx['numberbild'] = numberbild
+            ctx['kv'] = kv
+            return render(request , 's_result_adress.html', ctx)

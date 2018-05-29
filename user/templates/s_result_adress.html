@@ -1,0 +1,48 @@
+{% extends 'search_adress.html' %}
+{% load static %}
+{% block content_search %}
+<link rel="stylesheet" href="{% static 'css/result_search.css' %}">
+{% if null_result_search %}
+<p>
+    Ви шукали "Країна - {{country}} ,
+    регіон - {{region}} ,
+    місто - {{city}} ,
+    вулиця - {{street}} ,
+    номер будинку/ділянки - {{numberbild}},
+    номер квартири - {{kv}}"
+</p>
+<p>По даному адресу немає зареєстрованих заяв</p>
+{% else %}
+Ця ділянка зареєстрована на {{user_search.first_name}} {{user_search.second_name}} {{user_search.middle_name}}
+
+<div class="result-search">
+    <p>Країна <span>{{result_search.country}}</span></p>
+
+</div>
+<div class="result-search">
+    <p>Регіон  <span>{{result_search.region}}</span></p>
+
+</div>
+<div class="result-search">
+    <p>Місто  <span>{{result_search.city}}</span></p>
+
+</div>
+<div class="result-search">
+    <p>Вулиця <span>{{result_search.street}}</span></p>
+
+</div>
+<div class="result-search">
+    <p>Тип будівлі <span>{{result_search.bilding_type}}</span></p>
+</div>
+<div class="result-search">
+    <p>Номер будинку <span>{{result_search.numberbild}}</span></p>
+
+</div>
+<div class="result-search">
+    <p>Номер квартири/ділянки <span>{{result_search.kv}}</span></p>
+
+</div>
+
+{% endif %}
+<a href="{% url 'get-info-dovidky' id=user.id%}">Назад до пошуку</a>
+{% endblock %}
