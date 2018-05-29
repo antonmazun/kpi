@@ -1,5 +1,34 @@
 {% extends 'main.html' %}
-
+{% load static %}
 {% block content_user %}
-<p>Loremqweqweqweqweqw</p>
+<link rel="stylesheet" href="{% static 'css/search.css'%}">
+<script rel="stylesheet" src="{% static 'js/get_dovidka.js'%}"></script>
+
+{% block content_search %}
+<div class="search-info">
+    <form action="">
+    <p class="help-text">Надання інформації про обьект нерухомого майна: </p>
+    <div class="choices">
+        <div class="radio-btn">
+            <input type="radio" value="adress_choice" name = "get_search" checked> За адресою
+
+        </div>
+        <div class="radio-btn">
+            <input type="radio" value="register_number" name = "get_search"> За реєстраційним номером обьектом нерухомості
+        </div>
+        <div class="radio-btn">
+            <input type="radio" value="kadastr_number" name = "get_search"> За кадастровим номером земельної ділянки
+        </div>
+        <p class="help-text">Пошук відомостей за ідентифікаційними даними: </p>
+        <div class="radio-btn">
+            <input type="radio" value="psysical_person" name = "get_search"> Фізичної особи
+        </div>
+        <div class="radio-btn">
+            <input type="radio" value="legal_person" name = "get_search"> Юридичної особи
+        </div>
+    </div>
+        <button id ='next_step'>Далі</button>
+    </form>
+</div>
+{% endblock %}
 {% endblock %}
