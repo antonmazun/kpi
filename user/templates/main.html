@@ -1,10 +1,12 @@
-{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
     <style>
 .p-head {
     background-color: #f5f5f5;
@@ -17,20 +19,30 @@
     margin-left: auto;
     background-repeat: no-repeat;
 }
+	.container a:hover{
+			color: white ;
+			border: 5px solid white;
+			background: transparent !important ;
+		}
+a.logout:hover{
+			color: #343b49 ;
+			border: none;
+			background: transparent !important ;
 
+		}
 	.content
 	{
 		display: flex;
 		justify-content: space-between;
 		flex-wrap: wrap;
 		margin: 0 auto;
-		
+
 	}
 	.content .main-cabinet
 		{
 			width: 20%;
 		}
-		
+
 
 	.content .content-cabinet
 		{
@@ -73,7 +85,29 @@
 	{
 		padding: 15px;
 	}
-		
+		a.logout
+		{
+		    position: absolute;
+		    top: 120px;
+		    right: 60px;
+		    font-size: 18px;
+            color: #22317a;
+            font-family: "Verdana";
+            text-decoration:none !important;
+		    <!--padding: 15px 30px;-->
+		    <!--background: white;-->
+		    <!--color: black;-->
+		    <!--border-radius: 3px;-->
+
+		}
+		p.logout{
+		 position: absolute;
+		 font-size: 30px;
+		 top: -1px;
+		 right: -20px;
+
+		}
+
 	</style>
 </head>
 <body>
@@ -81,6 +115,10 @@
       <div class="container">
         <img src="{% static 'img/rrp-logo-text.png' %}" alt="Державний реєстр речових прав на нерухоме майно">
       </div>
+    <div class="exit">
+    <a class="logout" href="/">Вихід<p class="logout">⎆</p>
+</div>
+    </a>
     </div>
 <div class="content">
 	<div class="main-cabinet">

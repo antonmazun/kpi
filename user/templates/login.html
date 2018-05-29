@@ -10,6 +10,7 @@
     height: 180px
 }
 
+
 </style>
 
 <head>
@@ -46,6 +47,10 @@
             <div class="login-help">
       <p>Ще не зареєстровані? Тоді Вам сюди  <a href="{% url 'register'%}">Реєстрація</a></p>
 </div>
+
+    {% if object_does_not_exist %}
+    <p class = 'login-error'>{{object_does_not_exist}}</p>
+    {% endif %}
   </section>
 {% endblock %}
 </body>

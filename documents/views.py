@@ -47,7 +47,7 @@ def add_statement_state_registration(request):
                 register_number = form_data['register_number'],
             )
             print(form_data)
-        return HttpResponse('asdasdas')
+        return redirect('/documents/statement_state_registration/')
 
 def add_application_for_cancelation(request, id):
     if request.method == 'GET':
