@@ -2,6 +2,7 @@ from django.shortcuts import render  ,redirect
 from .forms import PhysicalUserForm , LoginForm  , LegalPersonForm
 from .models import PhysicalUser
 from django.http import  HttpResponse
+from django.core.exceptions import ObjectDoesNotExist
 # Create your views here.
 
 
@@ -22,15 +23,19 @@ def login(request):
             form = form.cleaned_data
             login = form['login']
             password = form['password']
-            user =  PhysicalUser.objects.get(login=login ,password=password)
-            print(user.id)
-            if user:
+            try:
+                user =  PhysicalUser.objects.get(login=login ,password=password)
                 request.session['entry_user'] = user.id
                 ctx = {}
                 ctx['user'] = user
                 return render(request , 'menu.html' , ctx)
-            else:
-                return HttpResponse('sdasdas')
+            except ObjectDoesNotExist as e:
+                ctx  = {}
+                login_form = LoginForm()
+                ctx['login_form'] = login_form
+                ctx['object_does_not_exist'] = 'Ви ввели неправильні данні'
+                return render(request , 'login.html' , ctx)
+
         return HttpResponse('error!')
 
 def register(request):
@@ -190,12 +195,14 @@ def change_password(request, id):
             if request.POST.get('new_password') == request.POST.get('new_password_2'):
                 user.password = request.POST.get('new_password')
                 user.save()
-                #user.password2 = request.POST.get('new_password_2')
                 return redirect('/change-password/' + str(id))
             else :
                 return HttpResponse('Паролі не співпадають')
-        else :
-            return HttpResponse('error!')
+        else:
+            ctx= {}
+            ctx['error_old_password'] = "Ви ввели неправильний пароль"
+            ctx['user'] = user
+            return render(request , 'change_password.html' ,ctx)
 
 
 

@@ -42,7 +42,7 @@ class LoginForm(ModelForm):
 
         widgets = {
             'login': forms.TextInput(attrs={'placeholder': 'Логін'}),
-            'password': forms.TextInput(attrs={'placeholder': 'Пароль'}),
+            'password': forms.PasswordInput(attrs={'placeholder': 'Пароль'}),
 
         }
 
