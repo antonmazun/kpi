@@ -80,7 +80,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'kpi',
         'USER': 'postgres',
-        'PASSWORD': 'antonmazun',
+        'PASSWORD': 'admin',
         'HOST': '',
         'PORT': '',
     }
@@ -123,3 +123,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
+STATIC_ROOT = '//static'

@@ -1,83 +1,16 @@
 {% extends 'index.html' %}
 {% block user_content %}
+{%load static %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="{% static 'css/style_reg.css' %}">
 <style>
-.form-block
-{
-    display : flex;
-    align-items: center;
-    justify-content: center;
 
-    height : 100vh;
-    flex-wrap: wrap;
-    flex-direction : column;
-
-}
-
-
-.form-block form
-{
-    align-content: center;
-       padding: 50px 155px;
-    background : #f6f6f7;
-}
-.form-block h4
-{
-    margin : 0;
-    background : blue;
-    color: white;
-    padding: 12px 132px;
-
-}
-.form-group
-{
-     display : flex;
-      margin-top: 5px;
-}
-.form-group label
-{
-    width: 65%;
-    text-align : right;
-}
-.form-group input
-{
-     width: 70%;
-     margin-left: 15px;
-     border-radius: 2px;
-     border: 1px solid #e3e3ec;
-}
-
-.btn-login
-{
-   border: none;
-    margin-left: 53%;
-    margin-top: 5px;
-    padding: 5px 45px;
-    border-radius: 3px;
-
-}
-	
-	.error
-	{
-		color: red;
-		padding: 10px;
-		border: 1px solid red;
-		background: #e2d6df;
-	}
-	
-	.password_error
-	{
-		display: none;
-	}
-
-.radio-btn
-{
-   background : #f6f6f7;
-}
 
 </style>
-<div class="form-block">
- <h4>Державний реєстр майнових прав на нерухоме майно</h4>
+
+    <section class="container">
+    <div class="login">
+ <h1>Державний реєстр майнових прав на нерухоме майно</h1>
     <div class="radio-btn">
         <input type="radio" name="type_person" value="psysical_person" id="psysical_person" checked>Фізична особа
         <input type="radio" name="type_person" value="legal_person" id="legal_person">Юридична особа
@@ -87,43 +20,42 @@
     {% for field in register_form_psysical %}
         {% if field.label == 'Id card' %}
             <div class="form-group" id="id_card">
-            <label for="">
-                {{field.label}}
-            </label>
 
             {{field}}
         </div>
         {% else %}
             <div class="form-group">
-            <label for="">
-                {{field.label}}
-            </label>
+
             {{field}}
         </div>
         {% endif %}
     {% endfor %}
+<div class="radio-btn1">
+    <input type="radio" name="type_register" value="passport" id="id_password_radio" checked>Паспорт
+    <input type="radio" name="type_register" id ="id_card_radio">Паспорт у вигляді ID-картки
+</div>
     <div id="passport_value">
         <div class="form-group" >
-            <label for="">Номер паспорта</label>
-            <input type="text" name="passport_number">
+
+            <input type="text" name="passport_number" placeholder='Номер паспорта'>
         </div>
         <div class="form-group">
-            <label for="">Серія паспорта</label>
-            <input type="text" name="passport_serial">
+
+            <input type="text" name="passport_serial" placeholder='Серія паспорта'>
         </div>
         <div class="form-group">
-            <label for="">Дата видачі паспорта</label>
-            <input type="text" name="passport_date">
+
+            <input type="text" name="passport_date" placeholder='Дата видачі'>
         </div>
         <div class="form-group">
-            <label for="">Ким виданий</label>
-            <input type="text" name="passport_publisher">
+
+            <input type="text" name="passport_publisher" placeholder='Виданий'>
         </div>
 	</div>
-    <div id="card">
+  <div id="card">
         <div class="form-group">
-            <label for="">Id card</label>
-            <input type="text" name="card">
+
+            <input type="text" name="card" placeholder='Номер паспорт у вигляді ID-картки'>
         </div>
     </div>
 
@@ -135,20 +67,15 @@
 	<div class="form-group password_error" id='error'>
 		<span class = 'error'>Паролі не співпадають!</span>
 	</div>
-    <input type="radio" name="type_register" value="passport" id="id_password_radio" checked>Паспорт
-    <input type="radio" name="type_register" id ="id_card_radio">id cart
-    <button class = 'btn-login'>Реєстрація</button>
- </form>
 
+    <button class = 'btn-login' type="submit" name="commit">Реєстрація</button>
+ </form>
 
     <form action="{% url 'register' %}" method="post" id="legal_form">{% csrf_token %}
         <input type="hidden" name='type_user' value = 'legal_user'>
          {% for field in register_form_legal %}
 
             <div class="form-group">
-            <label for="">
-                {{field.label}}
-            </label>
 
             {{field}}
         </div>
@@ -161,6 +88,7 @@
     </form>
  </div>
 
+         </section>
 
 <script>
 $(document).ready(function(){

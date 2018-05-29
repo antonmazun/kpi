@@ -1,3 +1,4 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +6,18 @@
     <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <style>
-	
+.p-head {
+    background-color: #f5f5f5;
+    background-image: url("{% static 'img/rrp-head-bg.png' %}");
+    background-repeat: repeat-x;
+    height: 180px
+}
+	.container img{
+    margin-right: auto;
+    margin-left: auto;
+    background-repeat: no-repeat;
+}
+
 	.content
 	{
 		display: flex;
@@ -65,6 +77,11 @@
 	</style>
 </head>
 <body>
+<div class="p-head">
+      <div class="container">
+        <img src="{% static 'img/rrp-logo-text.png' %}" alt="Державний реєстр речових прав на нерухоме майно">
+      </div>
+    </div>
 <div class="content">
 	<div class="main-cabinet">
 
