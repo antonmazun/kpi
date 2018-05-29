@@ -1,0 +1,64 @@
+{% extends 'all_document.html' %}
+
+{% block form %}
+<style>
+
+    .form-group
+{
+     display : flex;
+      margin-top: 5px;
+}
+.form-group label
+{
+    width: 20%;
+    text-align : right;
+}
+.form-group select,
+.form-group input
+{
+     width: 70%;
+     margin-left: 15px;
+     border-radius: 2px;
+     border: 1px solid #e3e3ec;
+}
+</style>
+<form action="." method="post">{% csrf_token %}
+    <input type="hidden" value="{{user.id}}" name="user_id">
+{% for field in form %}
+<div class="form-group">
+    <label for="">
+        {{field.label}}
+    </label>
+    {{field}}
+
+</div>
+{% endfor %}
+    <button>Подати заяву</button>
+    <a href="#" id ='add_adress'>Добавить адрес</a>
+    </form>
+
+<div id="form-adress">
+    <form action="{% url 'add-address' %}" method="post">{% csrf_token %}
+        {% for field in adress_form %}
+        <div class="form-group">
+            <label for="">{{field.label}}</label>
+        {{field}}
+        </div>
+        {% endfor %}
+        <button>Добавить адрес</button>
+    </form>
+</div>
+
+
+<script>
+$(document).ready(function(){
+	$('#form-adress').hide();
+	$('#add_adress').click(function(e){
+		e.preventDefault();
+		$('#form-adress').show();
+	})
+	
+})
+</script>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.forms import ModelForm
-from .models import PhysicalUser , LegalPerson
+from .models import PhysicalUser , LegalPerson , Address
 from django import forms
 
 
@@ -39,8 +39,16 @@ class LoginForm(ModelForm):
         model = PhysicalUser
         fields  = ['login' , 'password']
 
+
         widgets = {
             'login': forms.TextInput(attrs={'placeholder': 'Логін'}),
             'password': forms.TextInput(attrs={'placeholder': 'Пароль'}),
 
         }
+
+
+class AddressForm(ModelForm):
+    class Meta:
+        model = Address
+        fields = '__all__'
+

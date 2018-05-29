@@ -88,7 +88,7 @@
 			<a href="{% url 'personal-info' id=user.id %}" id='personal_info'>Особиста інформація</a>
 			<a href="{% url 'contact-data' id=user.id %}">Контактні дані</a>
 			<a href="{% url 'menu' id=user.id %}">Меню</a>
-			<a href="">Зміна паролю</a>
+			<a href="{% url 'change-password' id=user.id %}">Зміна паролю</a>
 
 	</div>
     <div class="content-cabinet">
@@ -97,12 +97,6 @@
 </div>
 
 
-
-
-{% block forms %}
-
-
-{% endblock%}
 
 <script>
 //	
