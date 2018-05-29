@@ -1,25 +1,41 @@
 {% extends 'main.html' %}
-
+{%load static %}
 {% block content_user %}
 <style>
-    .menu
-    {
-        width: 50%;
-        margin: 0 auto;
-    }
+
     .menu a
     {
-        display: block;
+
         padding: 15px 30px;
-        border: 1px solid #1e1792;
-         margin: 1px;
-        text-decoration: none;
+
     }
+
 </style>
-    <div class="menu">
-        <a href="{% url 'get-info-dovidky' id=user.id %}">Отримати інформаційну довідку</a>
-        <a href="">Перевірити документ</a>
-        <a href="">Інформація про стан розгляду заяви</a>
-        <a href="/documents/">Подача заяви про державну реєстрацію прав</a>
-    </div>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+	<link rel="stylesheet" href="{% static 'css/st_men.css' %}">
+
+</head>
+<nav class="menu menu--adsila">
+    <a class="menu__item" href="{% url 'get-info-dovidky' id=user.id %}">
+		<span class="menu__item-name">Отримати інформаційну довідку</span>
+		<span class="menu__item-label">Отримання відомостей про зареєстровані речові права на нерухоме майно</span>
+	</a>
+     <a class="menu__item" href="{% url 'get-info-dovidky' id=user.id %}">
+		<span class="menu__item-name">Перевірити документ</span>
+		<span class="menu__item-label">Перевірка документів, виданих Державним реєстром речових прав на нерухоме майно.</span>
+	</a>
+     <a class="menu__item" href="#">
+		<span class="menu__item-name">Інформація про стан розгляду заяви</span>
+		<span class="menu__item-label">Пошук та перегляд інформації про стан розгляду заяви або запиту</span>
+	</a>
+    <a class="menu__item" href="/documents/">
+		<span class="menu__item-name">Подача заяви про державну реєстрацію прав</span>
+		<span class="menu__item-label">Подача заяви про державну реєстрацію прав та їх обтяжень.</span>
+	</a>
+
+
+</nav>
 {% endblock %}
