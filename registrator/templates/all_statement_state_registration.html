@@ -1,0 +1,34 @@
+{% extends 'registor.html' %}
+{% block all_statement %}
+<style>
+    .statement-item
+    {
+
+        margin-left: 50px;
+        margin-bottom: 25px;
+    }
+     .statement-item p {
+           font-size: 16px;
+           margin-top: 2px;
+     }
+     .statement-item  a{text-decoration:none;}
+    .statement-item  a:hover {
+        color: red;
+    }
+</style>
+{% if none_statement %}
+    <p>Заяв ще немає</p>
+{% else %}
+    {% for elem in all_statement_state_registration %}
+        <div class="statement-item">
+            <p>Цю заяву подавав(ла) {{elem.user.first_name}} {{elem.user.second_name}} {{elem.user.middle_name}}</p>
+
+            <p> Статус {{elem.status}}</p>
+            <p>Регістраційний номер заяви {{elem.register_number}}</p>
+            <button type="submit">
+                <a href="{% url 'get-statement' id=elem.id %}">Перегляд заяви</a>
+            </button>
+        </div>
+    {% endfor %}
+{% endif %}
+{% endblock %}

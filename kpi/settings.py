@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'user',
     'documents',
+    'registrator',
 ]
 
 MIDDLEWARE = [
@@ -80,8 +81,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'kpi',
         'USER': 'postgres',
+<<<<<<< HEAD
 
         'PASSWORD': 'admin',
+=======
+        'PASSWORD': 'antonmazun',
+>>>>>>> 502afffe72bb357fe54097a9caeba3094e6d653c
         'HOST': '',
         'PORT': '',
     }

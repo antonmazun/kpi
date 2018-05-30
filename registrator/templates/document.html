@@ -1,0 +1,121 @@
+{% extends 'registor.html' %}
+{% block all_statement %}
+<style>
+    .form-group-doc
+    {
+        display: flex;
+        justify-content: justify-between;
+        flex-wrap: wrap;
+        margin-bottom: 4px;
+    }
+
+    .form-group-doc label {
+        width: 35%;
+        text-align: right;
+        font-size: 14px;
+        margin-top:10px;
+    }
+
+    .form-group-doc input,
+     .form-group-doc select
+     {
+        width: 50%;
+        text-align: left;
+        margin-left: 5%;
+    }
+
+    .btn
+    {
+        width:95%;
+        text-align : right;
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+
+
+
+</style>
+
+<form action="{% url 'get-statement' id=document.id %}" method="post">{% csrf_token %}
+    <div class="form-group-doc">
+        <label for="">Тип реєстрації</label>
+        <input type="text" value="{{document.type_registration}}" disabled>
+    </div>
+    <div class="form-group-doc">
+
+        <label for="">Імя</label>
+        <input type="text" value="{{document.user.first_name}}" disabled>
+    </div>
+    <div class="form-group-doc">
+        <label for="">Прізвище</label>
+           <input type="text" value="{{document.user.second_name}}" disabled>
+    </div>
+     <div class="form-group-doc">
+        <label for="">По батькові</label>
+           <input type="text" value="{{document.user.middle_name}}" disabled>
+    </div>
+     <div class="form-group-doc">
+        <label for="">Номер запису про право власності</label>
+        <input type="text" value="{{document.property_list_number}}" disabled>
+    </div>
+     <div class="form-group-doc">
+        <label for="">Форма власності</label>
+        <input type="text" value="{{document.ownership}}" disabled>
+    </div>
+     <div class="form-group-doc">
+        <label for="">Вид спільної власності</label>
+        <input type="text" value="{{document.common_property_type}}" disabled>
+    </div>
+    <div class="form-group-doc">
+        <label for="">Тип обьекта</label>
+        <input type="text" value="{{document.object_type}}" disabled>
+    </div>
+    <div class="form-group-doc">
+        <label for="">Реєстраційний номер</label>
+        <input type="text" value="{{document.register_number}}" disabled>
+    </div>
+    <div class="form-group-doc">
+
+        <label for="">Країна</label>
+        <input type="text" value="{{document.address.country}}" disabled>
+    </div>
+     <div class="form-group-doc">
+        <label for="">Місто</label>
+        <input type="text" value="{{document.address.city}}" disabled>
+    </div>
+    <div class="form-group-doc">
+        <label for="">Регіон</label>
+        <input type="text" value="{{document.address.region}}" disabled>
+    </div>
+     <div class="form-group-doc">
+        <label for="">Вулиця</label>
+        <input type="text" value="{{document.address.street}}" disabled>
+    </div>
+      <div class="form-group-doc">
+        <label for="">Тип будівлі</label>
+        <input type="text" value="{{document.address.bilding_type}}" disabled>
+    </div>
+     <div class="form-group-doc">
+        <label for="">Номер будинку</label>
+        <input type="text" value="{{document.address.numberbild}}" disabled>
+    </div>
+    <div class="form-group-doc">
+        <label for="">Номер квартири/земельної ділянки</label>
+        <input type="text" value="{{document.address.kv}}" disabled>
+    </div>
+     <div class="form-group-doc">
+        <label for=""><span>Поточний стан {{document.status}}</span> </label>
+
+         <select name="status" id="">
+             <option value="on_view">розгляд</option>
+             <option value="failure">відмова</option>
+             <option value="approved">схвалено</option>
+             <option value="dont_read">не прочитаний</option>
+         </select>
+    </div>
+    <div class="btn">
+        <button type="submit">Змінити статус</button>
+    </div>
+</form>
+{% endblock %}
+
