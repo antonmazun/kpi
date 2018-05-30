@@ -2,13 +2,41 @@
 {
 	position: absolute;
 /*	z-index: 100;*/
-	background: rgba(141, 141, 142 ,1) ;
+	background: #adadb5;
 	width: 600px;
-	height: 600px;
+	height: 420x;
 	top:50%;
 	left: 50%;
 	margin-left: -300px;
-	margin-top: -300px;
+	margin-top: -210px;
 	opacity: 1 !important;
 	padding: 15px 30px;
+}
+
+.item-adress
+{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+
+}
+.item-adress label
+{
+    width: 40%;
+    text-align: right;
+    font-size: 16px;
+
+}
+.item-adress input,
+.item-adress input[type=number],
+.item-adress select
+{
+     width: 50%;
+}
+
+#close_pop_up
+{
+    position:absolute;
+    right:0px;
+     top: -40px;
 }

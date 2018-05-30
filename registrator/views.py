@@ -3,6 +3,7 @@ from .forms import RegistorForm
 from .models import Registor
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponse
+from documents.models import StatementStateRegistration
 # Create your views here.
 
 def registrator_login(request):
@@ -36,4 +37,28 @@ def registrator_login(request):
 
 
 def get_all_register(request):
-    return HttpResponse('asdasd')
+    ctx = {}
+    ctx['user_registrator'] = True
+    try:
+        all_statement_state_registration = StatementStateRegistration.objects.all()
+        ctx['all_statement_state_registration'] = all_statement_state_registration
+        return render(request , 'all_statement_state_registration.html', ctx)
+    except ObjectDoesNotExist as e:
+        ctx['none_statement'] = True
+        return render(request, 'all_statement_state_registration.html', ctx)
+
+
+def get_statement(request , id):
+    document = StatementStateRegistration.objects.get(id=id)
+    ctx = {}
+    ctx['user_registrator'] = True
+    if request.method == "GET":
+        ctx['document'] = document
+        ctx['user_registrator'] = True
+        return render(request , 'document.html' , ctx)
+    elif request.method == 'POST':
+        if 'status' in request.POST:
+            status  = request.POST.get('status')
+            document.status = status
+            document.save()
+            return render(request, 'all_statement_state_registration.html', ctx)

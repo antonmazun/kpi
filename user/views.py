@@ -3,6 +3,7 @@ from .forms import PhysicalUserForm , LoginForm  , LegalPersonForm , AddressForm
 from .models import PhysicalUser , Address, Registor
 from django.http import  HttpResponse
 from django.core.exceptions import ObjectDoesNotExist
+from documents.models import StatementStateRegistration
 # Create your views here.
 
 
@@ -301,3 +302,17 @@ def search_for_adress(request):
             ctx['numberbild'] = numberbild
             ctx['kv'] = kv
             return render(request , 's_result_adress.html', ctx)
+
+
+def get_info(request):
+    id_user  = request.session['entry_user']
+    user  = PhysicalUser.objects.get(id=id_user)
+    ctx  = {}
+    try:
+        user_document = StatementStateRegistration.objects.filter(user=user)
+        ctx['user_document'] = user_document
+        return render(request , 'user_document.html' , ctx)
+    except ObjectDoesNotExist as e:
+        ctx['none_document'] = True
+        return render(request, 'user_document.html', ctx)
+
