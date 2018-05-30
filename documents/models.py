@@ -1,6 +1,6 @@
 from django.db import models
-from user.models import Address, PhysicalUser, Registor
-from user.models import Address , PhysicalUser
+from user.models import Address, PhysicalUser
+from registrator.models import Registor
 
 
 # Create your models here.
@@ -52,7 +52,7 @@ class StatementStateRegistration(models.Model):
     address = models.ForeignKey(Address , verbose_name="Адреса" , on_delete=models.CASCADE)
     user = models.ForeignKey(PhysicalUser , on_delete=models.CASCADE , default=None)
     status  = models.CharField(max_length=255 , verbose_name='Статус' ,choices=CHOICES_STATUS , default='dont_read')
-    registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE , default=None)
+    registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE , default=None , blank=True , null=True)
 
 
 class ApplicationForCancelation(models.Model):
@@ -65,7 +65,7 @@ class ApplicationForCancelation(models.Model):
     record_number_nonowner_real_estate = models.IntegerField(verbose_name='Номер запису про взяття на облік  безхазяйного нерухомого майна',blank=True, null=True)
     grounds_for_cancelation = models.CharField(max_length=255, verbose_name='Підстава для скасування')
     user = models.ForeignKey(PhysicalUser, verbose_name='Юзер', on_delete=models.CASCADE)
-    registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE , default=None)
+    registor = models.ForeignKey(Registor, verbose_name='Реєстратор', on_delete=models.CASCADE , default=None, blank=True , null=True)
     date = models.DateField(verbose_name='Дата',auto_now=False, auto_now_add=False)
     status  = models.CharField(max_length=255 , verbose_name='Статус' ,choices=CHOICES_STATUS , default='dont_read')
 

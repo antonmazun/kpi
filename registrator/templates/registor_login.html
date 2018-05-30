@@ -1,0 +1,21 @@
+{% extends 'login.html' %}
+
+{% block login_user %}
+
+  <div class="login">
+        <h1>Вхід до особистого кабінету реєстратора</h1>
+            <form action="." method="post">{% csrf_token %}
+                {% for field in form_registor %}
+                <div class="form-group" id="container">
+                    {{field}}
+                </div>
+                {% endfor %}
+                <button class = 'btn-login' type="submit" name="commit">Вхід</button>
+            </form>
+
+
+      {% if error_entry %}
+        <p>Ви ввели некоректні дані. Зверніться до адміністратора</p>
+      {% endif %}
+</div>
+{% endblock %}
