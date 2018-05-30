@@ -78,23 +78,10 @@ WSGI_APPLICATION = 'kpi.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'kpi_v1',
+        'NAME': 'kpi',
         'USER': 'postgres',
-<<<<<<< HEAD
-
-
-
-
-        'PASSWORD': 'antonmazun',
-
-        'PASSWORD': 'Vlad1309',
 
         'PASSWORD': 'admin',
-
-
-=======
-        'PASSWORD': 'antonmazun',
->>>>>>> 4fcf8d46d69efcd39607f81c27d1c80b980b9481
         'HOST': '',
         'PORT': '',
     }

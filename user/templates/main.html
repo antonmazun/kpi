@@ -145,6 +145,25 @@ body {
   background-color: #a2a2a2;
 }
 
+ .main-cabinet{
+ margin: -5px !important;
+ }
+
+ .five a:hover{
+ color: #fff !important;
+ }
+ .four a:hover{
+ color: #fff !important;
+ }
+ .three a:hover{
+ color: #fff !important;
+ }
+ .two a:hover{
+ color: #fff !important;
+ }
+ .one a:hover{
+ color: #fff !important;
+ }
 	</style>
 </head>
 <body>
@@ -176,7 +195,7 @@ body {
 			<li class="one"><a href="{% url 'personal-info' id=user.id %}" id='personal_info'>Особиста інформація</a></li>
 			<li class="two"><a href="{% url 'contact-data' id=user.id %}">Контактні дані</a></li>
 			<li class="three"><a href="{% url 'menu' id=user.id %}">Меню</a></li>
-			<li class="five"><a href="{% url 'change-password' id=user.id %}">Зміна паролю</a></li>
+			<li class="four"><a href="{% url 'change-password' id=user.id %}">Зміна паролю</a></li>
 </ul>
 	</div>
     {% endif %}
